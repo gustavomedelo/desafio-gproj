@@ -1,0 +1,36 @@
+server:
+  port: ${SERVER_PORT:8080}
+  servlet:
+    context-path: '/'
+
+spring:
+  mvc:
+    throw-exception-if-no-handler-found: true
+  datasource:
+    url: jdbc:postgresql://${DB_URL:localhost}:${DB_PORT:5432}/${DB_NAME:postgres}?currentSchema=gproj
+    username: ${DB_USERNAME:admin}
+    password: ${DB_PASSWORD:admin}
+  flyway:
+    baselineOnMigrate: false
+  messages:
+    basename: i18n/messages
+    encoding: UTF-8
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: 'org.hibernate.dialect.PostgreSQLDialect'
+    hibernate:
+      ddl-auto: update
+    generate-ddl: false
+  sql:
+    init:
+      mode:
+  web:
+    resources:
+      add-mappings: false
+
+management:
+  endpoint:
+    health:
+      show-details: always
